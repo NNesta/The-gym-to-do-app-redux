@@ -1,21 +1,21 @@
-import { BsPlusCircleFill } from "react-icons/bs";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTask } from "../features/task";
 import { nanoid } from "nanoid";
+import { BsPlusCircleFill } from "react-icons/bs";
+import { addTask } from "../features/task";
 
 const InputBox = () => {
-  const [todoText, setTodoText] = useState("");
+  const [taskText, setTaskText] = useState("");
   const [invalidInput, setInvalidInput] = useState(false);
   const dispatch = useDispatch();
   const handleChange = (event) => {
     setInvalidInput(false);
-    setTodoText(event.target.value);
+    setTaskText(event.target.value);
   };
   const handleAdd = () => {
-    if (todoText) {
-      dispatch(addTask({ todoText, isCompleted: false, id: nanoid() }));
-      setTodoText("");
+    if (taskText) {
+      dispatch(addTask({ taskText, isCompleted: false, id: nanoid() }));
+      setTaskText("");
     } else {
       setInvalidInput(true);
     }
@@ -29,9 +29,9 @@ const InputBox = () => {
     >
       <input
         onChange={handleChange}
-        value={todoText}
+        value={taskText}
         className="px-4 py-2 focus:outline-none flex-1"
-        placeholder="add todoText..."
+        placeholder="add taskText..."
         onKeyDown={(event) => {
           if (event.key === "Enter") {
             handleAdd();
@@ -39,10 +39,11 @@ const InputBox = () => {
         }}
       />
 
-      {todoText && (
+      {taskText && (
         <BsPlusCircleFill
           onClick={handleAdd}
-          className="text-current-500 text-xl hover:scale-110 cursor-pointer"
+          size={25}
+          className="text-current-500  hover:scale-110 cursor-pointer"
         />
       )}
     </div>
