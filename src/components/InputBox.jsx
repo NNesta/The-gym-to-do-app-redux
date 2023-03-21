@@ -13,7 +13,7 @@ const InputBox = () => {
     setTaskText(event.target.value);
   };
   const handleAdd = () => {
-    if (taskText) {
+    if (taskText.trim()) {
       dispatch(addTask({ taskText, isCompleted: false, id: nanoid() }));
       setTaskText("");
     } else {
@@ -39,7 +39,7 @@ const InputBox = () => {
         }}
       />
 
-      {taskText && (
+      {taskText.trim() && (
         <BsPlusCircleFill
           onClick={handleAdd}
           size={25}
