@@ -22,8 +22,16 @@ const TaskCard = ({ id, taskText, isCompleted }) => {
 
   return (
     <div className="flex items-center gap-4  border-b py-2 my-4">
-      <input type="checkbox" checked={isCompleted} onChange={handleComplete} />
-      <div className={`flex-1 ${isCompleted && "line-through"}`}>
+      <input
+        type="checkbox"
+        className="cursor-pointer"
+        checked={isCompleted}
+        onChange={handleComplete}
+      />
+      <div
+        onClick={handleComplete}
+        className={`cursor-pointer flex-1 ${isCompleted && "line-through"}`}
+      >
         {isEditing ? (
           <input
             ref={(input) => input && input.focus()}
